@@ -212,3 +212,7 @@ C:\Users\pocho\Documents\ARQUITECTURA SOFTWARE\PARCIAL 2\git\arqui-project-p2\pr
 C:\Users\pocho\Documents\ARQUITECTURA SOFTWARE\PARCIAL 2\git\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.csproj.CopyComplete
 C:\Users\pocho\Documents\ARQUITECTURA SOFTWARE\PARCIAL 2\git\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.dll
 C:\Users\pocho\Documents\ARQUITECTURA SOFTWARE\PARCIAL 2\git\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.pdb
+C:\Users\camil\OneDrive\Documentos\GitHub\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.csproj.AssemblyReference.cache
+C:\Users\camil\OneDrive\Documentos\GitHub\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.csproj.CoreCompileInputs.cache
+C:\Users\camil\OneDrive\Documentos\GitHub\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.dll
+C:\Users\camil\OneDrive\Documentos\GitHub\arqui-project-p2\prj_architecture_p2\prj_architecture_p2\obj\Debug\prj_architecture_p2.pdb
