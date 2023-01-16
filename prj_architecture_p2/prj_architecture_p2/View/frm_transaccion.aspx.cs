@@ -27,6 +27,7 @@ namespace prj_architecture_p2.View
         DataTable dtTransactionTypes;
         DataTable dtProducts;
         DataTable dtHeadFact;
+        /*
         protected void Page_Load(object sender, EventArgs e)
         {
             // comentario random
@@ -244,7 +245,7 @@ namespace prj_architecture_p2.View
             {
                 txt_smsProduct.Text = "Excepción: " + ex.Message;
             }
-        }
+        }*/
 
 
     }
