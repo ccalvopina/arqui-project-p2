@@ -29,6 +29,7 @@ namespace prj_architecture_p2.View
         DataTable dtHeadFact;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // comentario random
             String hostName = string.Empty;
             hostName = Dns.GetHostName();
             txt_server.Text = "Hostname: " + hostName;
