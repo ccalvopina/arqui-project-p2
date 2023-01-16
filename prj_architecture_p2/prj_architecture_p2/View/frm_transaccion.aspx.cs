@@ -14,17 +14,17 @@ namespace prj_architecture_p2.View
     public partial class Transaccion : System.Web.UI.Page
     {
         //ArrayList rucs = new ArrayList();
-        ArrayList namesClients = new ArrayList();
-        ArrayList namesCitys = new ArrayList();
-        ArrayList namesProducts = new ArrayList();
+        ArrayList namesCuentas = new ArrayList();
+        ArrayList namesTransactionTypes = new ArrayList();
+        //ArrayList namesProducts = new ArrayList();
         
 
-        public double valorTotalFact = 0;
+        public double valorTotal = 0;
 
-        DAOFacturation cliente = new DAOFacturation();
+        DAOBancos cliente = new DAOBancos();
 
-        DataTable dtClients;
-        DataTable dtCitys;
+        DataTable dtCuentas;
+        DataTable dtTransactionTypes;
         DataTable dtProducts;
         DataTable dtHeadFact;
         protected void Page_Load(object sender, EventArgs e)
@@ -34,95 +34,74 @@ namespace prj_architecture_p2.View
             txt_server.Text = "Hostname: " + hostName;
             if (!IsPostBack)
             {
-                loadTableFacts();
-                loadCmbNameClient();
-                loadCmbNameCity();
-                loadCmbProducts();
+                loadTableTransactionsHeader();
+                loadCmbNameCuenta();
+                loadCmbNameTipoTransaccion();
                 loadPriceUnit(cmb_cuenta.Text);
                 loadPriceTotalProductSelect(cmb_cuenta.Text);
             }
         }
 
-        private void loadTableFacts()
+        private void loadTableTransactionsHeader()
         {
             try
             {
-                grdFacts.DataSource = cliente.getListHeadFacts();
+                grdFacts.DataSource = cliente.getListTransactionHeader();
                 grdFacts.DataBind();
             }
             catch (Exception ex) { txt_mensaje.Text = "Excepción: " + ex.Message; }
 
         }
-        private void loadCmbNameClient()
+        private void loadCmbNameCuenta()
         {
             try
             {
-                this.dtClients = cliente.getListClients();
-                int nRows = this.dtClients.Rows.Count;
+                this.dtCuentas = cliente.getListBanckAccounts();
+                int nRows = this.dtCuentas.Rows.Count;
                 for (int i = 0; i < nRows; i++)
                 {
-                    namesClients.Add(this.dtClients.Rows[i]["NOMBRE_CLIENTE"].ToString());
+                    namesCuentas.Add(this.dtCuentas.Rows[i]["NOMBRE_CB"].ToString());
                 }
-                cmb_client.DataSource = namesClients;
-                cmb_client.DataBind();
+                cmb_cuenta.DataSource = namesCuentas;
+                cmb_cuenta.DataBind();
             }
             catch (Exception ex) { txt_mensaje.Text = "Excepción: " + ex.Message; }
 
         }
 
-        private void loadCmbNameCity()
+        private void loadCmbNameTipoTransaccion()
         {
             try
             {
-                this.dtCitys = cliente.getListCitys();
-                int nRows = this.dtCitys.Rows.Count;
+                this.dtTransactionTypes = cliente.getListTransactionTypes();
+                int nRows = this.dtTransactionTypes.Rows.Count;
                 for (int i = 0; i < nRows; i++)
                 {
-                    namesCitys.Add(this.dtCitys.Rows[i]["NOMBRE_CIUDAD"].ToString());
+                    namesTransactionTypes.Add(this.dtTransactionTypes.Rows[i]["NOMBRE_TT"].ToString());
                 }
-                cmb_city.DataSource = namesCitys;
-                cmb_city.DataBind();
+                cmb_transactions_type.DataSource = namesTransactionTypes;
+                cmb_transactions_type.DataBind();
             }
             catch (Exception ex)
             {
                 txt_mensaje.Text = "Excepción: " + ex.Message;
             }
 
-        }
-
-        private void loadCmbProducts()
-        {
-            try
-            {
-                this.dtProducts = cliente.getListProducts();
-                int nRows = this.dtProducts.Rows.Count;
-                for (int i = 0; i < nRows; i++)
-                {
-                    namesProducts.Add(this.dtProducts.Rows[i]["NOMBRE_ARTICULO"].ToString());
-                }
-                cmb_cuenta.DataSource = namesProducts;
-                cmb_cuenta.DataBind();
-            }
-            catch (Exception ex)
-            {
-                txt_mensaje.Text = "Excepción: " + ex.Message;
-            }
         }
 
         protected void OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            loadPriceUnit(cmb_cuenta.Text);
-            loadPriceTotalProductSelect(cmb_cuenta.Text);
+            loadPriceUnit(cmb_PROD.Text);
+            loadPriceTotalProductSelect(cmb_PROD.Text);
         }
         protected void btn_addClick(object sender, EventArgs e)
         {
             try
             {
-                int idClient = cliente.getIdClientFromName(cmb_client.Text);
-                int idCiudad = cliente.getIdCityFromName(cmb_city.Text);
-                string valorStr = Convert.ToString(this.valorTotalFact);
-                txt_mensaje.Text = cliente.insertNewHeadFact(idClient, idCiudad, txt_date_fact.Text, valorStr);
-                loadTableFacts();
+                int idCuenta = cliente.getIdBanckAccountFromName(cmb_cuenta.Text);
+                string valorStr = Convert.ToString(this.valorTotal);
+                txt_mensaje.Text = cliente.insertNewTransactionHeader(idCuenta, txt_date_ct.Text, txt_description.Text, valorStr);
+                loadTableTransactionsHeader();
             }
             catch (Exception ex)
             {
@@ -134,10 +113,9 @@ namespace prj_architecture_p2.View
         {
             try
             {
-                int id_fact = Convert.ToInt32(txt_id.Text);
-                int idClient = cliente.getIdClientFromName(cmb_client.Text);
-                int idCiudad = cliente.getIdCityFromName(cmb_city.Text);
-                string valorStr = Convert.ToString(txt_priceTotalFact.Text);
+                int id_ct = Convert.ToInt32(txt_id.Text);
+                int idCuenta = cliente.getIdBanckAccountFromName(cmb_cuenta.Text);
+                string valorStr = Convert.ToString(txt_priceTotal.Text);
                 txt_mensaje.Text = cliente.updateHeadFact(id_fact, idClient, idCiudad, txt_date_fact.Text, valorStr);
                 loadTableFacts();
             }

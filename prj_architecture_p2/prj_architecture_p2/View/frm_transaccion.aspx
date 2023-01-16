@@ -52,118 +52,116 @@
         </nav>
     </div>
     
-    <form id="form1" runat="server">
-        <div class="container">
-            <h1 class="label label-default mt-5">TRANSACCIÓN COMPLEJA </h1>
+    
+    <div class="container">
+        <h1 class="label label-default mt-5">TRANSACCIÓN COMPLEJA </h1>
+        <hr />
+        <div class="row">
+            <h2 class="label label-default mt-5">CUENTAS </h2>
             <hr />
-            <br />
-            <div class="row">
-                <div class="col">
+            <div class="col">
+                <form id="form2" runat="server">
                     <asp:Label runat="server" class=""># ESTADO DE CUENTA</asp:Label>
-                    <asp:TextBox ID="txt_id" runat="server" class="form-control"></asp:TextBox>
-                    <br />
-                    <asp:Label runat="server" class="">CUENTA</asp:Label>
-                    <asp:DropDownList ID="cmb_cuenta" runat="server" class="form-control"></asp:DropDownList>
-                    <br />
-                    <asp:Label ID="Label1" runat="server" Text="FECHA" class="form-label"></asp:Label>
-                    <asp:TextBox ID="txt_date" runat="server" class="form-control" placeholder="dd/mm/yyyy"></asp:TextBox>
-                    <br />
-                    <asp:Label runat="server" class="">Ciudad</asp:Label>
-                    <asp:DropDownList ID="cmb_city" runat="server" class="form-control"></asp:DropDownList>
-                    <br />
-                    <div class="row" >
-                        <div class="col">
-                            <asp:Button ID="btn_add" runat="server" Text="Registrar Factura" OnClick="btn_addClick" class="btn btn-success" />
+                        <asp:TextBox ID="id_ct" runat="server" class="form-control"></asp:TextBox>
+                        <br />
+                        <asp:Label runat="server" class="">CUENTA</asp:Label>
+                        <asp:DropDownList ID="cmb_cuenta" runat="server" class="form-control"></asp:DropDownList>
+                        <br />
+                        <asp:Label ID="Label2" runat="server" Text="FECHA" class="form-label"></asp:Label>
+                        <asp:TextBox ID="txt_date_ct" runat="server" class="form-control" placeholder="dd/mm/yyyy"></asp:TextBox>
+                        <br />
+                        <asp:Label runat="server" class="">Descripción</asp:Label>
+                        <asp:TextBox ID="txt_description_ct" runat="server" class="form-control"></asp:TextBox>
+                        <br />
+                        <div class="row" >
+                            <div class="col">
+                                <asp:Button ID="Button1" runat="server" Text="Registrar EC" OnClick="btn_addClick" class="btn btn-success" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button2" runat="server" Text="Actualizar EC" OnClick="btn_updateClick" class="btn btn-info" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button3" runat="server" Text="Eliminar EC" OnClick="btn_deleteClick" class="btn btn-danger" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button4" runat="server" Text="Buscar EC" OnClick="btn_findClick" class="btn btn-primary" />
+                            </div>
                         </div>
-                        <div class="col">
-                            <asp:Button ID="btn_update" runat="server" Text="Actualizar Datos" OnClick="btn_updateClick" class="btn btn-info" />
-                        </div>
-                        <div class="col">
-                            <asp:Button ID="btn_delete" runat="server" Text="Eliminar Factura" OnClick="btn_deleteClick" class="btn btn-danger" />
-                        </div>
-                        <div class="col">
-                            <asp:Button ID="btn_find" runat="server" Text="Buscar Factura" OnClick="btn_findClick" class="btn btn-primary" />
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                    <asp:Label ID="txt_mensaje" runat="server" CssClass="h4" ></asp:Label>
-                    <asp:Label ID="txt_date" runat="server"></asp:Label>
+                        <br />
+                        <br />
+                        <asp:Label ID="Label3" runat="server" CssClass="h4" ></asp:Label>
+                </form>
+            </div>
+            <div class="col">
+                <div class="row text-center">
+                    <h2>ESTADOS DE CUENTA</h2>
                 </div>
-                <div class="col">
-                    <h3>Articulos</h3>
-                    <asp:Label runat="server" class="">Ciudad</asp:Label>
-                    <asp:DropDownList ID="cmb_products" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="cmb_products_SelectedIndexChanged"></asp:DropDownList>
-                    <br />
-                    <asp:Label runat="server" class="">Cantidad</asp:Label>
-                    <asp:TextBox ID="txt_cantidad" runat="server" class="form-control" TextMode="Number">0</asp:TextBox>
-                    <br />
-                    <div class="row">
-                        <div class="col">
-                            <asp:Label runat="server">Precio Unitario: $</asp:Label>
-                            <asp:Label ID="txt_unitPrice" runat="server"></asp:Label>
-                            <br />
-                            <br />
-                            <asp:Button ID="btn_addProduct" runat="server" Text="Agregar al Carrito" OnClick="btn_addProductClick" class="btn btn-secondary" />
-                        </div>
-                        <div class="col">
-                            <asp:Label runat="server">Total: $</asp:Label>
-                            <asp:Label ID="txt_priceTotal" runat="server"></asp:Label>
-                            <br />
-                            <br />
-                            <asp:Label ID="txt_smsProduct" runat="server"></asp:Label>
-                        </div>
-                    </div>
-                    <br />
-                    <h4 class="text-center">Carrito de Compras</h4>
-                    <br />
-                    <!-- DISPLAY TABLE OF PRODUCTS -->
-                    <asp:GridView ID="grdProducts" runat="server" AutoGenerateColumns="false" CssClass="table table-striped"
-                        DataKeyNames="NOMBRE_ARTICULO,CANTIDAD_DETFAC,PRECIO_DETFAC">
+                <div class="row mt-3">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="table table-striped"
+                        DataKeyNames="ID_CT,ID_CB,FECHA_CB,DESCRIPCION_CT,VALOR_CT">
                         <Columns>
-                            <asp:BoundField HeaderText="Articulo" DataField="NOMBRE_ARTICULO" />
-                            <asp:BoundField HeaderText="Cantidad" DataField="CANTIDAD_DETFAC" />
-                            <asp:BoundField HeaderText="Precio Total" DataField="PRECIO_DETFAC" />
+                            <asp:BoundField HeaderText="# ESTADO DE CUENTA" DataField="ID_CT" />
+                            <asp:BoundField HeaderText="CUENTA BANCARIA" DataField="ID_CB" />
+                            <asp:BoundField HeaderText="FECHA" DataField="FECHA_CB" />
+                            <asp:BoundField HeaderText="DESCRIPCIÓN" DataField="DESCRIPCION_CT" />
+                            <asp:BoundField HeaderText="SALDO" DataField="VALOR_CT" />
                         </Columns>
                     </asp:GridView>
-                    <br />
-                    <div class="row">
-                        <div class="col-8">
-                            <asp:Label class="h5" runat="server">Precio Total de Factura:</asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Label class="h4" ID="txt_priceTotalFact" runat="server"></asp:Label>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="text-center">
-                        <asp:Label class="h6" ID="Label2" runat="server"> Click para comprar ! </asp:Label>
-                        <br /><br />
-                        <asp:Button ID="btn_sendFact" runat="server" Text="Comprar" OnClick="btn_sendFactClick" class="form-control btn btn-warning " />
-                    </div>
-
                 </div>
             </div>
         </div>
-
-        <div class="container my-5">
-            <div class="row text-center">
-                <h2>Historico de Facturas Registradas</h2>
+        
+        <div class="row">
+            <h2 class="label label-default mt-5">TRANSACCIONES </h2>
+            <hr />
+            <div class="col">
+                <form id="form3" runat="server">
+                    <asp:Label runat="server" class="">CODIGO DE TRANSACCION</asp:Label>
+                        <asp:TextBox ID="id_dt" runat="server" class="form-control"></asp:TextBox>
+                        <br />
+                        <asp:Label runat="server" class="">TIPO DE TRANSACCION</asp:Label>
+                        <asp:DropDownList ID="cmb_transactionType" runat="server" class="form-control"></asp:DropDownList>
+                        <br />
+                        <asp:Label ID="Label4" runat="server" Text="FECHA" class="form-label"></asp:Label>
+                        <asp:TextBox ID="txt_date_dt" runat="server" class="form-control" placeholder="dd/mm/yyyy"></asp:TextBox>
+                        <br />
+                        <asp:Label runat="server" class="">VALOR</asp:Label>
+                        <asp:TextBox ID="txt_valor_dt" runat="server" class="form-control"></asp:TextBox>
+                        <br />
+                        <div class="row" >
+                            <div class="col">
+                                <asp:Button ID="Button5" runat="server" Text="Registrar Transacción" OnClick="btn_addClick" class="btn btn-success" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button6" runat="server" Text="Actualizar Transacción" OnClick="btn_updateClick" class="btn btn-info" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button7" runat="server" Text="Eliminar Transacción" OnClick="btn_deleteClick" class="btn btn-danger" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="Button8" runat="server" Text="Buscar Transacción" OnClick="btn_findClick" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <asp:Label ID="Label5" runat="server" CssClass="h4" ></asp:Label>
+                </form>
             </div>
-            <div class="row mt-3">
-                <asp:GridView ID="grdFacts" runat="server" AutoGenerateColumns="false" CssClass="table table-striped"
-                    DataKeyNames="NUMERO_CABECERA,NOMBRE_CLIENTE,NOMBRE_CIUDAD,FECHA_CABECERA,VALOR_CABECERA">
-                    <Columns>
-                        <asp:BoundField HeaderText="Numero Factura" DataField="NUMERO_CABECERA" />
-                        <asp:BoundField HeaderText="Cliente" DataField="NOMBRE_CLIENTE" />
-                        <asp:BoundField HeaderText="Ciudad" DataField="NOMBRE_CIUDAD" />
-                        <asp:BoundField HeaderText="Fecha" DataField="FECHA_CABECERA" />
-                        <asp:BoundField HeaderText="Precio Total Factura" DataField="VALOR_CABECERA" />
-                    </Columns>
-                </asp:GridView>
+            <div class="col">
+                <div class="row mt-3">
+                    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass="table table-striped"
+                        DataKeyNames="ID_DT,ID_TT,FECHA_DT,VALOR_DT">
+                        <Columns>
+                            <asp:BoundField HeaderText="CODIGO DE TRANSACCIÓN" DataField="ID_DT" />
+                            <asp:BoundField HeaderText="TIPO DE TRANSACCIÓN" DataField="ID_TT" />
+                            <asp:BoundField HeaderText="FECHA" DataField="FECHA_DT" />
+                            <asp:BoundField HeaderText="VALOR" DataField="VALOR_DT" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
+    
 </body>
 </html>

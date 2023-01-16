@@ -242,14 +242,14 @@ namespace prj_architecture_p2.DAO
             }
         }
         
-        public String insertNewTransactionHeader(int id_ct, int id_cb, int id_dp, String date, String description)
+        public String insertNewTransactionHeader(int id_cb, String date, String description, String valor)
         {
             String sql = "";
             MySqlConnection myConnection = new MySqlConnection("server=database-2-arqui-prod.ckwn9gqw1b2k.us-east-2.rds.amazonaws.com;user=admin;database=ProjectArquiDB;port=3306;password=admin123");
             try
             {
                 myConnection.Open();
-                sql = "INSERT INTO CABECERATRANSACCION(ID_CT, ID_CB, ID_DETALLEPAGO, FECHA_CT, DESCRIPCION_CT)VALUES(" + id_ct + "," + id_cb + ",'" + id_dp + "','" + date + "','" + description + "')";
+                sql = "INSERT INTO CABECERATRANSACCION(ID_CB, FECHA_CT, DESCRIPCION_CT, VALOR_CT)VALUES(" + id_cb + ",'" + date + "','" + description + ", " + valor + "')";
                 MySqlCommand command = new MySqlCommand(sql, myConnection);
                 MySqlDataReader dr1 = command.ExecuteReader();
                 myConnection.Close();
